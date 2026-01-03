@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Filter Screen</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#F59E0B",
+              "primary-dark": "#D97706",
+              "background-light": "#FFFFFF",
+              "background-dark": "#18181B",
+              "surface-light": "#F3F4F6",
+              "surface-dark": "#27272A",
+              "border-light": "#E5E7EB",
+              "border-dark": "#3F3F46",
+              "text-main-light": "#111827",
+              "text-main-dark": "#F9FAFB",
+              "text-sub-light": "#6B7280",
+              "text-sub-dark": "#9CA3AF",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .custom-checkbox {
+        appearance: none;
+        background-color: transparent;
+        margin: 0;
+        font: inherit;
+        color: currentColor;
+        width: 1.5em;
+        height: 1.5em;
+        border: 2px solid #d1d5db;
+        border-radius: 0.35rem;
+        display: grid;
+        place-content: center;
+        transition: all 0.2s ease-in-out;
+      }
+      .dark .custom-checkbox {
+        border-color: #4b5563;
+      }
+      .custom-checkbox::before {
+        content: "";
+        width: 0.75em;
+        height: 0.75em;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+        box-shadow: inset 1em 1em white;
+        transform-origin: center;
+        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+      }
+      .custom-checkbox:checked {
+        background-color: #f59e0b;
+        border-color: #f59e0b;
+      }
+      .custom-checkbox:checked::before {
+        transform: scale(1);
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-200 dark:bg-gray-900 font-display flex justify-center h-screen w-screen overflow-hidden text-text-main-light dark:text-text-main-dark"
+  >
+    <div
+      class="w-full max-w-md h-full bg-background-light dark:bg-background-dark flex flex-col relative shadow-2xl overflow-hidden rounded-t-[2rem] mt-4 sm:mt-10 sm:rounded-[2rem] sm:h-[95vh] sm:border-4 sm:border-gray-300 sm:dark:border-gray-700"
+    >
+      <div class="h-6 w-full shrink-0"></div>
+      <div
+        class="px-6 py-4 border-b border-border-light dark:border-border-dark shrink-0 flex flex-col items-center"
+      >
+        <div
+          class="w-12 h-1 bg-gray-300 dark:bg-gray-600 rounded-full mb-4"
+        ></div>
+        <h1 class="text-xl font-bold">Bộ lọc</h1>
+      </div>
+      <div class="flex-1 overflow-y-auto no-scrollbar px-6 py-2 pb-32">
+        <div class="mt-6">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-base font-bold uppercase tracking-wide">
+              Tình trạng
+            </h2>
+            <div class="relative inline-block w-5 h-5">
+              <input
+                class="custom-checkbox w-6 h-6 border-2 border-primary rounded text-primary focus:ring-primary dark:border-primary dark:bg-transparent dark:checked:bg-primary"
+                type="checkbox"
+              />
+            </div>
+          </div>
+          <div class="space-y-4">
+            <label
+              class="flex items-center justify-between group cursor-pointer select-none"
+            >
+              <span class="text-base">Chưa tới thời hạn</span>
+              <input class="custom-checkbox" type="checkbox" />
+            </label>
+            <label
+              class="flex items-center justify-between group cursor-pointer select-none"
+            >
+              <span class="text-base">Trong thời hạn</span>
+              <input checked="" class="custom-checkbox" type="checkbox" />
+            </label>
+            <label
+              class="flex items-center justify-between group cursor-pointer select-none"
+            >
+              <span class="text-base">Sắp đến thời hạn</span>
+              <input class="custom-checkbox" type="checkbox" />
+            </label>
+            <label
+              class="flex items-center justify-between group cursor-pointer select-none"
+            >
+              <span class="text-base">Hết thời hạn</span>
+              <input checked="" class="custom-checkbox" type="checkbox" />
+            </label>
+          </div>
+        </div>
+        <div class="h-px bg-border-light dark:bg-border-dark my-6"></div>
+        <div>
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-base font-bold uppercase tracking-wide">
+              Trạng thái
+            </h2>
+            <div class="relative inline-block w-5 h-5">
+              <input
+                class="custom-checkbox w-6 h-6 border-2 border-primary rounded text-primary focus:ring-primary dark:border-primary dark:bg-transparent dark:checked:bg-primary"
+                type="checkbox"
+              />
+            </div>
+          </div>
+          <div class="space-y-4">
+            <label
+              class="flex items-center justify-between group cursor-pointer select-none"
+            >
+              <span class="text-base">Đang sử dụng</span>
+              <input checked="" class="custom-checkbox" type="checkbox" />
+            </label>
+            <label
+              class="flex items-center justify-between group cursor-pointer select-none"
+            >
+              <span class="text-base">Ngưng sử dụng</span>
+              <input class="custom-checkbox" type="checkbox" />
+            </label>
+            <label
+              class="flex items-center justify-between group cursor-pointer select-none"
+            >
+              <span class="text-base">Chờ sửa chữa</span>
+              <input class="custom-checkbox" type="checkbox" />
+            </label>
+            <label
+              class="flex items-center justify-between group cursor-pointer select-none"
+            >
+              <span class="text-base">Hủy</span>
+              <input class="custom-checkbox" type="checkbox" />
+            </label>
+          </div>
+        </div>
+        <div class="h-px bg-border-light dark:bg-border-dark my-6"></div>
+        <div>
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-base font-bold uppercase tracking-wide">
+              Hình thức
+            </h2>
+            <div class="relative inline-block w-5 h-5">
+              <input
+                class="custom-checkbox w-6 h-6 border-2 border-primary rounded text-primary focus:ring-primary dark:border-primary dark:bg-transparent dark:checked:bg-primary"
+                type="checkbox"
+              />
+            </div>
+          </div>
+          <div class="space-y-4">
+            <label
+              class="flex items-center justify-between group cursor-pointer select-none"
+            >
+              <span class="text-base">Chủ đầu tư</span>
+              <input class="custom-checkbox" type="checkbox" />
+            </label>
+            <label
+              class="flex items-center justify-between group cursor-pointer select-none"
+            >
+              <span class="text-base">Ban quản lý</span>
+              <input checked="" class="custom-checkbox" type="checkbox" />
+            </label>
+            <label
+              class="flex items-center justify-between group cursor-pointer select-none"
+            >
+              <span class="text-base">Ban quản trị</span>
+              <input class="custom-checkbox" type="checkbox" />
+            </label>
+            <label
+              class="flex items-center justify-between group cursor-pointer select-none"
+            >
+              <span class="text-base">Khách hàng</span>
+              <input class="custom-checkbox" type="checkbox" />
+            </label>
+            <label
+              class="flex items-center justify-between group cursor-pointer select-none"
+            >
+              <span class="text-base">Các đơn vị khác</span>
+              <input class="custom-checkbox" type="checkbox" />
+            </label>
+          </div>
+        </div>
+        <div class="h-8"></div>
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-full bg-background-light dark:bg-background-dark border-t border-border-light dark:border-border-dark p-4 px-6 pb-8 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] dark:shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.2)] z-10"
+      >
+        <div class="flex gap-4">
+          <button
+            class="flex-1 py-3 px-4 rounded-xl border border-primary text-primary font-semibold hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-colors duration-200"
+          >
+            Thiết lập lại
+          </button>
+          <button
+            class="flex-1 py-3 px-4 rounded-xl bg-primary text-white font-semibold shadow-lg shadow-orange-200 dark:shadow-none hover:bg-primary-dark transition-colors duration-200"
+          >
+            Áp dụng
+          </button>
+        </div>
+        <div class="flex justify-center mt-6">
+          <div
+            class="w-32 h-1 bg-gray-900 dark:bg-gray-100 rounded-full opacity-20"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

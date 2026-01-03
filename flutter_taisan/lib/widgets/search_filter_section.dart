@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class SearchFilterSection extends StatelessWidget {
-  final List<String> activeFilters;
+  final Map<String, String> groupedFilters;
   final int assetCount;
   final Function(String) onRemoveFilter;
+  final VoidCallback? onFilterPressed;
 
   const SearchFilterSection({
     super.key,
-    required this.activeFilters,
+    required this.groupedFilters,
     required this.assetCount,
     required this.onRemoveFilter,
+    this.onFilterPressed,
   });
 
   @override
@@ -51,29 +53,31 @@ class SearchFilterSection extends StatelessWidget {
                   child: Row(
                     children: [
                       // Filter Button
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[100],
-                          borderRadius: BorderRadius.circular(8),
+                      GestureDetector(
+                        onTap: onFilterPressed,
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[100],
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: const Icon(Icons.filter_alt, color: Colors.grey, size: 20),
                         ),
-                        child: const Icon(Icons.filter_alt, color: Colors.grey, size: 20),
                       ),
 
                       const SizedBox(width: 8),
 
-                      // Active Filter Tags
-                      ...activeFilters.asMap().entries.map((entry) {
-                        final index = entry.key;
-                        final filter = entry.value;
-                        final isFirst = index == 0;
+                      // Active Filter Tags (Grouped by category)
+                      ...groupedFilters.entries.map((entry) {
+                        final categoryName = entry.key;
+                        final optionsText = entry.value;
                         
                         return Padding(
                           padding: const EdgeInsets.only(right: 8),
-                          child: _buildFilterChip(
-                            label: filter,
-                            color: isFirst ? Colors.orange : Colors.teal,
-                            onRemove: () => onRemoveFilter(filter),
+                          child: _buildGroupedFilterChip(
+                            category: categoryName,
+                            options: optionsText,
+                            onRemove: () => onRemoveFilter(categoryName),
                           ),
                         );
                       }).toList(),
@@ -100,27 +104,69 @@ class SearchFilterSection extends StatelessWidget {
     );
   }
 
-  Widget _buildFilterChip({
-    required String label,
-    required MaterialColor color,
+  Widget _buildGroupedFilterChip({
+    required String category,
+    required String options,
     required VoidCallback onRemove,
   }) {
+    // Determine color based on category
+    Color chipColor;
+    Color borderColor;
+    Color textColor;
+    
+    switch (category) {
+      case 'Tình trạng':
+        chipColor = Colors.teal[50]!;
+        borderColor = Colors.teal[200]!;
+        textColor = Colors.teal[700]!;
+        break;
+      case 'Trạng thái':
+        chipColor = Colors.orange[50]!;
+        borderColor = Colors.orange[200]!;
+        textColor = Colors.orange[700]!;
+        break;
+      case 'Hình thức':
+        chipColor = Colors.blue[50]!;
+        borderColor = Colors.blue[200]!;
+        textColor = Colors.blue[700]!;
+        break;
+      default:
+        chipColor = Colors.grey[50]!;
+        borderColor = Colors.grey[200]!;
+        textColor = Colors.grey[700]!;
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: color[50],
-        border: Border.all(color: color[200]!),
+        color: chipColor,
+        border: Border.all(color: borderColor),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
+          // Category name in bold
           Text(
-            label,
+            category,
             style: TextStyle(
               fontSize: 14,
-              color: color[700],
-              fontWeight: FontWeight.w500,
+              color: textColor,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(width: 4),
+          // Options text
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 150),
+            child: Text(
+              options,
+              style: TextStyle(
+                fontSize: 13,
+                color: textColor,
+                fontWeight: FontWeight.w400,
+              ),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
           const SizedBox(width: 4),
@@ -129,7 +175,7 @@ class SearchFilterSection extends StatelessWidget {
             child: Icon(
               Icons.close,
               size: 16,
-              color: color[700],
+              color: textColor,
             ),
           ),
         ],
