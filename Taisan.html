@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Asset List Screen</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E3A8A", // Deep blue from the reference image header
+              secondary: "#F59E0B", // Amber for tags
+              "background-light": "#F3F4F6",
+              "background-dark": "#18181B",
+              "surface-light": "#FFFFFF",
+              "surface-dark": "#27272A",
+              "border-light": "#E5E7EB",
+              "border-dark": "#3F3F46",
+              "text-main-light": "#111827",
+              "text-main-dark": "#F9FAFB",
+              "text-sub-light": "#6B7280",
+              "text-sub-dark": "#9CA3AF",
+              "status-green-bg": "#D1FAE5",
+              "status-green-text": "#047857",
+              "status-orange-bg": "#FEF3C7",
+              "status-orange-text": "#D97706",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        min-height: 100vh;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body class="bg-background-light dark:bg-background-dark font-display">
+    <div class="bg-primary text-white sticky top-0 z-50">
+      <div
+        class="h-10 w-full flex justify-between items-center px-6 text-xs font-semibold"
+      >
+        <span>9:41</span>
+        <div class="flex gap-1">
+          <i class="material-icons-round text-sm">signal_cellular_alt</i>
+          <i class="material-icons-round text-sm">wifi</i>
+          <i class="material-icons-round text-sm">battery_full</i>
+        </div>
+      </div>
+      <div class="px-4 py-2 flex justify-between items-center pb-4">
+        <h1 class="text-xl font-bold">Tài sản</h1>
+        <button class="p-1">
+          <i class="material-icons-round">qr_code_scanner</i>
+        </button>
+      </div>
+      <div class="flex text-sm font-medium">
+        <button
+          class="flex-1 py-3 text-center bg-blue-100 text-primary border-b-2 border-primary"
+        >
+          Tài sản
+        </button>
+        <button class="flex-1 py-3 text-center bg-white text-gray-500">
+          Vật tư
+        </button>
+      </div>
+    </div>
+    <div
+      class="bg-white dark:bg-surface-dark px-4 py-3 shadow-sm sticky top-[8.5rem] z-40"
+    >
+      <div class="relative mb-3">
+        <div
+          class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+        >
+          <i class="material-icons-round text-gray-400">search</i>
+        </div>
+        <input
+          class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-primary focus:ring-1 focus:ring-primary sm:text-sm"
+          placeholder="Mã/ Tên tài sản"
+          type="text"
+        />
+      </div>
+      <div class="flex justify-between items-center">
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
+          <button
+            class="p-2 bg-gray-100 rounded-lg text-gray-600 hover:bg-gray-200 shrink-0"
+          >
+            <i class="material-icons-round text-xl" style="font-size: 20px"
+              >filter_alt</i
+            >
+          </button>
+          <div
+            class="px-3 py-1.5 bg-orange-50 border border-orange-200 rounded-lg text-sm text-orange-700 flex items-center gap-1 font-medium whitespace-nowrap shrink-0"
+          >
+            <span>Đang sử dụng</span>
+            <i
+              class="material-icons-round text-base cursor-pointer hover:text-orange-900"
+              style="font-size: 16px"
+              >close</i
+            >
+          </div>
+          <div
+            class="px-3 py-1.5 bg-teal-50 border border-teal-200 rounded-lg text-sm text-teal-700 flex items-center gap-1 font-medium whitespace-nowrap shrink-0"
+          >
+            <span>Trong thời hạn</span>
+            <i
+              class="material-icons-round text-base cursor-pointer hover:text-teal-900"
+              style="font-size: 16px"
+              >close</i
+            >
+          </div>
+        </div>
+        <span class="text-xs text-gray-500 font-medium whitespace-nowrap ml-2"
+          >5 Tài sản</span
+        >
+      </div>
+    </div>
+    <div class="p-4 space-y-4 pb-24">
+      <div
+        class="bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 p-4 relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 right-0 w-24 h-6 bg-pink-100 rounded-bl-xl"
+        ></div>
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="text-base font-bold text-primary">Đèn hành lang tầng G</h3>
+        </div>
+        <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+          <div class="flex items-start gap-2">
+            <i class="material-icons-round text-base mt-0.5 text-gray-400"
+              >location_on</i
+            >
+            <span class="font-medium">CHILL CORNER/BLOCK A/A0102</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="material-icons-round text-base text-gray-400">person</i>
+            <span>Chủ đầu tư</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="material-icons-round text-base text-gray-400">tag</i>
+            <span>Hệ thống điện</span>
+          </div>
+        </div>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span
+            class="inline-flex items-center px-2.5 py-1 rounded bg-teal-100 text-teal-800 text-xs font-medium"
+          >
+            <i class="material-icons-round text-xs mr-1">verified_user</i>
+            CÒN BẢO HÀNH
+          </span>
+          <span
+            class="inline-flex items-center px-2.5 py-1 rounded bg-orange-100 text-orange-800 text-xs font-medium"
+          >
+            ĐANG SỬ DỤNG
+          </span>
+        </div>
+      </div>
+      <div
+        class="bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 p-4 relative overflow-hidden"
+      >
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="text-base font-bold text-primary">Đèn hành lang tầng G</h3>
+        </div>
+        <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+          <div class="flex items-start gap-2">
+            <i class="material-icons-round text-base mt-0.5 text-gray-400"
+              >location_on</i
+            >
+            <span class="font-medium">CHILL CORNER/BLOCK A/A0102</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="material-icons-round text-base text-gray-400">person</i>
+            <span>Chủ đầu tư</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="material-icons-round text-base text-gray-400">tag</i>
+            <span>Hệ thống điện</span>
+          </div>
+        </div>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span
+            class="inline-flex items-center px-2.5 py-1 rounded bg-teal-100 text-teal-800 text-xs font-medium"
+          >
+            <i class="material-icons-round text-xs mr-1">verified_user</i>
+            CÒN BẢO HÀNH
+          </span>
+          <span
+            class="inline-flex items-center px-2.5 py-1 rounded bg-orange-100 text-orange-800 text-xs font-medium"
+          >
+            ĐANG SỬ DỤNG
+          </span>
+        </div>
+      </div>
+      <div
+        class="bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 p-4 relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 right-0 w-24 h-6 bg-pink-100 rounded-bl-xl"
+        ></div>
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="text-base font-bold text-primary">Đèn hành lang tầng G</h3>
+        </div>
+        <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+          <div class="flex items-start gap-2">
+            <i class="material-icons-round text-base mt-0.5 text-gray-400"
+              >location_on</i
+            >
+            <span class="font-medium">CHILL CORNER/BLOCK A/A0102</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="material-icons-round text-base text-gray-400">person</i>
+            <span>Chủ đầu tư</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="material-icons-round text-base text-gray-400">tag</i>
+            <span>Hệ thống điện</span>
+          </div>
+        </div>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span
+            class="inline-flex items-center px-2.5 py-1 rounded bg-teal-100 text-teal-800 text-xs font-medium"
+          >
+            <i class="material-icons-round text-xs mr-1">verified_user</i>
+            CÒN BẢO HÀNH
+          </span>
+          <span
+            class="inline-flex items-center px-2.5 py-1 rounded bg-orange-100 text-orange-800 text-xs font-medium"
+          >
+            ĐANG SỬ DỤNG
+          </span>
+        </div>
+      </div>
+      <div
+        class="bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 p-4 relative overflow-hidden"
+      >
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="text-base font-bold text-primary">Đèn hành lang tầng G</h3>
+        </div>
+        <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+          <div class="flex items-start gap-2">
+            <i class="material-icons-round text-base mt-0.5 text-gray-400"
+              >location_on</i
+            >
+            <span class="font-medium">CHILL CORNER/BLOCK A/A0102</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="material-icons-round text-base text-gray-400">person</i>
+            <span>Chủ đầu tư</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="material-icons-round text-base text-gray-400">tag</i>
+            <span>Hệ thống điện</span>
+          </div>
+        </div>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span class="text-xs text-gray-400 italic">No warranty info</span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="fixed bottom-0 w-full bg-white dark:bg-surface-dark border-t border-gray-200 dark:border-border-dark py-2 px-6 flex justify-between items-center z-50 text-xs text-gray-500"
+    >
+      <button class="flex flex-col items-center gap-1">
+        <i class="material-icons-round text-2xl">assignment</i>
+        <span>Công việc</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-primary">
+        <i class="material-icons-round text-2xl">inventory_2</i>
+        <span class="font-medium">Tài sản</span>
+      </button>
+      <div class="relative -top-5">
+        <button
+          class="bg-primary text-white p-3 rounded-2xl shadow-lg shadow-blue-200"
+        >
+          <i class="material-icons-round text-2xl">grid_view</i>
+        </button>
+      </div>
+      <button class="flex flex-col items-center gap-1">
+        <i class="material-icons-round text-2xl">place</i>
+        <span>Vị trí</span>
+      </button>
+      <button class="flex flex-col items-center gap-1">
+        <i class="material-icons-round text-2xl">insert_chart</i>
+        <span>Thống kê</span>
+      </button>
+    </div>
+    <div
+      class="fixed bottom-0 w-full flex justify-center pb-2 z-[60] pointer-events-none"
+    >
+      <div class="w-32 h-1 bg-gray-900 rounded-full opacity-20"></div>
+    </div>
+  </body>
+</html>
